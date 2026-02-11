@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derecho Medioambiental | Defensa Legal del Planeta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-deep: #1a3a2e;
+            --forest-mid: #2d5f4d;
+            --earth-gold: #d4a574;
+            --sage: #8ca68c;
+            --sky: #e8f2f0;
+            --cream: #faf8f5;
+            --text-dark: #1f2d27;
+            --accent-coral: #e07a5f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text-dark);
+            background: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Animated background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(141, 166, 140, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(45, 95, 77, 0.08) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, -30px); }
+        }
+        
+        /* Header/Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(45, 95, 77, 0.1);
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--forest-deep);
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--forest-mid);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--earth-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--forest-deep);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 3rem;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--forest-deep);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            color: var(--forest-mid);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--forest-deep);
+            color: white;
+            box-shadow: 0 4px 15px rgba(26, 58, 46, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background: var(--forest-mid);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 58, 46, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--forest-deep);
+            border: 2px solid var(--forest-deep);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--forest-deep);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hero-visual {
+            position: relative;
+            animation: fadeIn 1.2s ease-out 0.4s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .visual-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(45, 95, 77, 0.1);
+        }
+        
+        .visual-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--forest-mid), var(--sage));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .visual-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--forest-deep);
+            margin-bottom: 1rem;
+        }
+        
+        .visual-card p {
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 3rem;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-label {
+            color: var(--earth-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: var(--forest-deep);
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+        
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .service-card {
+            padding: 3rem 2.5rem;
+            background: var(--cream);
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--earth-gold), var(--sage));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover {
+            border-color: var(--sage);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--forest-deep);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            color: var(--text-dark);
+            opacity: 0.85;
+            line-height: 1.8;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 3rem;
+            background: var(--sky);
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: var(--forest-deep);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--forest-deep);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--forest-mid);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .about-image {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .about-image::before {
+            content: '🌍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12rem;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(45, 95, 77, 0.8), rgba(141, 166, 140, 0.6));
+            z-index: 0;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 3rem;
+            background: var(--forest-deep);
+            color: white;
+        }
+        
+        .contact-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--earth-gold);
+        }
+        
+        .contact p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .social-links a:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+            color: var(--earth-gold);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <header>
+        <nav>
+            <div class="logo">Lex Natura</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Defendiendo el futuro del planeta</h1>
+                <div class="subtitle">Derecho Medioambiental de Excelencia</div>
+                <p>Representación legal especializada en la protección del medio ambiente. Comprometidos con la justicia ecológica y el desarrollo sostenible.</p>
+                <div class="cta-buttons">
+                    <a href="#contacto" class="btn btn-primary">Consulta Gratuita</a>
+                    <a href="#servicios" class="btn btn-secondary">Nuestros Servicios</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="visual-card">
+                    <div class="visual-icon">⚖️</div>
+                    <h3>Justicia Ambiental</h3>
+                    <p>Cada caso es una oportunidad para proteger nuestro planeta y asegurar un futuro sostenible para las próximas generaciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="servicios" class="services reveal">
+        <div class="section-header">
+            <div class="section-label">Áreas de Práctica</div>
+            <h2>Servicios Legales Especializados</h2>
+            <p>Ofrecemos asesoría integral en todas las áreas del derecho medioambiental</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🌳</span>
+                <h3>Conservación y Biodiversidad</h3>
+                <p>Protección legal de ecosistemas, especies en peligro y áreas naturales protegidas. Litigios contra actividades que amenacen la biodiversidad.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">💧</span>
+                <h3>Recursos Hídricos</h3>
+                <p>Defensa de fuentes de agua, regulación de contaminación hídrica y gestión sostenible de recursos acuíferos.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🏭</span>
+                <h3>Cumplimiento Ambiental</h3>
+                <p>Asesoría en normativas ambientales, permisos, licencias y auditorías de cumplimiento para empresas.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🌡️</span>
+                <h3>Cambio Climático</h3>
+                <p>Litigios climáticos, estrategias de mitigación y adaptación, cumplimiento de acuerdos internacionales.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">⚠️</span>
+                <h3>Daño Ambiental</h3>
+                <p>Representación en casos de contaminación, derrames tóxicos y restauración de ecosistemas dañados.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">📋</span>
+                <h3>Evaluaciones de Impacto</h3>
+                <p>Análisis y cuestionamiento de estudios de impacto ambiental, participación ciudadana en proyectos.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="nosotros" class="about reveal">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Comprometidos con la defensa del medio ambiente</h2>
+                <p>Con años de experiencia en derecho medioambiental, nuestro equipo ha liderado casos emblemáticos en la protección de ecosistemas, lucha contra la contaminación y promoción del desarrollo sostenible.</p>
+                <p>Creemos que la justicia ambiental es un derecho fundamental. Trabajamos con comunidades, organizaciones y empresas para garantizar que las leyes ambientales se cumplan y que nuestro planeta tenga la defensa legal que merece.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">150+</span>
+                        <span class="stat-label">Casos Ganados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500K</span>
+                        <span class="stat-label">Hectáreas Protegidas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Compromiso Ambiental</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+    
+    <section id="contacto" class="contact reveal">
+        <div class="contact-content">
+            <h2>¿Necesitas Asesoría Legal Ambiental?</h2>
+            <p>Estamos aquí para ayudarte. Contáctanos para una consulta inicial gratuita.</p>
+            <a href="#" class="btn btn-primary">Agendar Consulta</a>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-item-icon">📧</span>
+                    <span>contacto@lexnatura.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-icon">📞</span>
+                    <span>+507 6XXX-XXXX</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-icon">📍</span>
+                    <span>Ciudad de Panamá, Panamá</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2026 Lex Natura - Derecho Medioambiental. Todos los derechos reservados.</p>
+        <p>Defendiendo el planeta, una ley a la vez.</p>
+        <div class="social-links">
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Instagram">📷</a>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function checkReveal() {
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkReveal);
+        checkReveal(); // Initial check
+    </script>
+</body>
+</html>
